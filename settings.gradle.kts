@@ -7,7 +7,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = "kotlin-example"
+rootProject.name = "markdown-resources"
 
 include(
     ":",

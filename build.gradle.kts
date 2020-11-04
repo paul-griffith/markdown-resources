@@ -10,11 +10,11 @@ version = "0.0.1-SNAPSHOT"
 extra["sdkVersion"] = "8.1.0-SNAPSHOT"
 
 ignitionModule {
-    name.set("Kotlin Example")
-    fileName.set("Kotlin-Example.modl")
-    id.set("com.griffithindustries.kotlin.KotlinExample")
+    name.set("Markdown Resources")
+    fileName.set("Markdown-Resources.modl")
+    id.set("com.griffithindustries.samples.MarkdownResources")
     moduleVersion.set("$version")
-    moduleDescription.set("A simple example of writing an Ignition module in Kotlin")
+    moduleDescription.set("A proof-of-concept implementation of a project resource + editor in Ignition 8.1.X's project resource system")
     requiredIgnitionVersion.set("8.1.0")
     projectScopes.set(mapOf(
         ":common" to "GD",
@@ -23,8 +23,8 @@ ignitionModule {
     ))
     moduleDependencies.set(mapOf())
     hooks.set(mapOf(
-        "com.griffithindustries.kotlin.gateway.KotlinExampleGatewayHook" to "G",
-        "com.griffithindustries.kotlin.designer.KotlinExampleDesignerHook" to "D"
+        "com.griffithindustries.samples.gateway.MarkdownGatewayHook" to "G",
+        "com.griffithindustries.samples.designer.MarkdownDesignerHook" to "D"
     ))
 }
 
@@ -35,6 +35,7 @@ allprojects {
         withType<KotlinCompile> {
             kotlinOptions {
                 jvmTarget = "11"
+                freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
             }
         }
     }

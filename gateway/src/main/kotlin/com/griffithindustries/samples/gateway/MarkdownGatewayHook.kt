@@ -1,19 +1,10 @@
-package com.griffithindustries.kotlin.gateway
+package com.griffithindustries.samples.gateway
 
-import com.griffithindustries.kotlin.common.*
 import com.inductiveautomation.ignition.common.licensing.*
-import com.inductiveautomation.ignition.common.project.resource.adapter.*
 import com.inductiveautomation.ignition.common.script.hints.*
-import com.inductiveautomation.ignition.gateway.dataroutes.*
 import com.inductiveautomation.ignition.gateway.model.*
-import com.inductiveautomation.ignition.gateway.web.models.*
-import com.inductiveautomation.ignition.gateway.web.pages.config.overviewmeta.*
-import com.inductiveautomation.ignition.gateway.web.pages.status.overviewmeta.*
-import org.python.core.*
-import java.util.*
-import javax.servlet.http.*
 
-class KotlinExampleGatewayHook : AbstractGatewayModuleHook() {
+class MarkdownGatewayHook : AbstractGatewayModuleHook() {
     lateinit var context: GatewayContext
     /**
      * Called to before startup. This is the chance for the module to add its extension points and update persistent
@@ -22,8 +13,6 @@ class KotlinExampleGatewayHook : AbstractGatewayModuleHook() {
      */
     override fun setup(context: GatewayContext) {
         this.context = context
-
-        context.scriptManager.addScriptModule("system.excel", FastExcelWrapper, PropertiesFileDocProvider())
     }
 
     override fun startup(activationState: LicenseState) {}
