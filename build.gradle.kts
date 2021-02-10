@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.*
 
 plugins {
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.4.30"
     id("io.ia.sdk.modl") version ("0.0.1-SNAPSHOT")
 }
 
@@ -21,7 +21,7 @@ ignitionModule {
         ":designer" to "D",
         ":gateway" to "G"
     ))
-    moduleDependencies.set(mapOf())
+    moduleDependencies.set(emptyMap())
     hooks.set(mapOf(
         "com.griffithindustries.samples.gateway.MarkdownGatewayHook" to "G",
         "com.griffithindustries.samples.designer.MarkdownDesignerHook" to "D"

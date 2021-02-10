@@ -4,6 +4,7 @@ import com.inductiveautomation.ignition.common.licensing.*
 import com.inductiveautomation.ignition.common.script.hints.*
 import com.inductiveautomation.ignition.gateway.model.*
 
+@Suppress("unused")
 class MarkdownGatewayHook : AbstractGatewayModuleHook() {
     lateinit var context: GatewayContext
     /**
@@ -15,9 +16,9 @@ class MarkdownGatewayHook : AbstractGatewayModuleHook() {
         this.context = context
     }
 
-    override fun startup(activationState: LicenseState) {}
+    override fun startup(activationState: LicenseState) = Unit
 
-    override fun shutdown() {}
+    override fun shutdown() = Unit
 
     override fun isFreeModule(): Boolean = true
 

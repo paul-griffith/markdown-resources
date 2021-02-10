@@ -4,6 +4,7 @@ import com.griffithindustries.samples.common.*
 import com.inductiveautomation.ignition.client.icons.*
 import com.inductiveautomation.ignition.common.project.resource.*
 import com.inductiveautomation.ignition.designer.model.*
+import com.inductiveautomation.ignition.designer.navtree.model.*
 import com.inductiveautomation.ignition.designer.tabbedworkspace.*
 import com.inductiveautomation.ignition.designer.workspacewelcome.*
 import java.util.*
@@ -24,7 +25,7 @@ class MarkdownWorkspace(context: DesignerContext) : TabbedResourceWorkspace(cont
     }
 
     private val newMarkdownNote: (ProjectResourceBuilder) -> Unit = { builder ->
-        builder.putData("readme", "Enter a note".toByteArray())
+        builder.putData(MarkdownResource.DATA_KEY, "Enter a note".toByteArray())
     }
 
     override fun addNewResourceActions(folderNode: ResourceFolderNode, menu: JPopupMenu) {
@@ -42,17 +43,25 @@ class MarkdownWorkspace(context: DesignerContext) : TabbedResourceWorkspace(cont
         return object : WorkspaceWelcomePanel("Markdown Notes Workspace Title", null, null) {
             override fun createPanels(): List<JComponent> {
                 return listOf(
-                    ResourceBuilderPanel(context, "markdown note", MarkdownResource.RESOURCE_TYPE.rootPath(), listOf(
-                        ResourceBuilderDelegate.build(
-                            "markdown note",
-                            VectorIcons.get("resource-note"),
-                            newMarkdownNote
-                        )
-                    ), this@MarkdownWorkspace::open),
-                    RecentlyModifiedTablePanel(context,
+                    ResourceBuilderPanel(
+                        context,
+                        "markdown note",
+                        MarkdownResource.RESOURCE_TYPE.rootPath(),
+                        listOf(
+                            ResourceBuilderDelegate.build(
+                                "markdown note",
+                                VectorIcons.get("resource-note"),
+                                newMarkdownNote
+                            )
+                        ),
+                        this@MarkdownWorkspace::open
+                    ),
+                    RecentlyModifiedTablePanel(
+                        context,
                         MarkdownResource.RESOURCE_TYPE,
                         "markdown notes",
-                        this@MarkdownWorkspace::open)
+                        this@MarkdownWorkspace::open
+                    )
                 )
             }
         }.toOptional()

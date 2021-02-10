@@ -7,6 +7,7 @@ import com.inductiveautomation.ignition.common.project.resource.*
 import com.inductiveautomation.ignition.designer.model.*
 import javax.swing.*
 
+@Suppress("unused")
 class MarkdownDesignerHook : AbstractDesignerModuleHook() {
     private lateinit var context: DesignerContext
 
@@ -16,9 +17,7 @@ class MarkdownDesignerHook : AbstractDesignerModuleHook() {
         context.registerResourceWorkspace(MarkdownWorkspace(context))
     }
 
-    override fun shutdown() {
-
-    }
+    override fun shutdown() = Unit
 
     override fun getResourceCategoryKey(id: ProjectResourceId): String = when(id.resourceType) {
         MarkdownResource.RESOURCE_TYPE -> "Markdown Notes"
