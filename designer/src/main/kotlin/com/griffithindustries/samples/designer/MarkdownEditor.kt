@@ -6,32 +6,25 @@ import com.inductiveautomation.ignition.designer.tabbedworkspace.*
 import net.miginfocom.swing.*
 import org.fife.ui.rsyntaxtextarea.*
 import org.fife.ui.rtextarea.*
+import javax.swing.*
 
 class MarkdownEditor(workspace: TabbedResourceWorkspace, path: ResourcePath) : ResourceEditor<MarkdownResource>(workspace, path) {
-    private lateinit var textArea: RSyntaxTextArea
+    private lateinit var field1: JSpinner
+    private lateinit var field2: JSpinner
 
     override fun init(resource: MarkdownResource) {
         removeAll()
         layout = MigLayout("ins 0, fill")
 
-        textArea = RSyntaxTextArea(resource.note).also {
-            it.syntaxEditingStyle = SyntaxConstants.SYNTAX_STYLE_NONE
-            add(RTextScrollPane(it), "grow")
+        field1 = JSpinner(SpinnerNumberModel(resource.field, 0, 100, 1)).also {
+            add(it, "wrap")
+        }
+        field2 = JSpinner(SpinnerNumberModel(resource.field2, 0, 100, 1)).also {
+            add(it, "wrap")
         }
     }
 
     override fun getObjectForSave(): MarkdownResource {
-        return MarkdownResource(textArea.text)
-    }
-
-    override fun deserialize(resource: ProjectResource): MarkdownResource {
-        return resource.getData(MarkdownResource.DATA_KEY)
-            ?.takeIf(ByteArray::isNotEmpty)
-            ?.toString(Charsets.UTF_8)
-            .let { MarkdownResource(it.orEmpty()) }
-    }
-
-    override fun serializeResource(builder: ProjectResourceBuilder, resource: MarkdownResource) {
-        builder.putData(MarkdownResource.DATA_KEY, resource.note.toByteArray())
+        return MarkdownResource(field1.value as Int, field2.value as Int)
     }
 }

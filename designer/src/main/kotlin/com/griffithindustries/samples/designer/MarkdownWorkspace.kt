@@ -3,20 +3,25 @@ package com.griffithindustries.samples.designer
 import com.griffithindustries.samples.common.*
 import com.inductiveautomation.ignition.client.icons.*
 import com.inductiveautomation.ignition.common.project.resource.*
+import com.inductiveautomation.ignition.common.util.*
+import com.inductiveautomation.ignition.common.xmlserialization.serialization.*
 import com.inductiveautomation.ignition.designer.model.*
 import com.inductiveautomation.ignition.designer.navtree.model.*
 import com.inductiveautomation.ignition.designer.tabbedworkspace.*
 import com.inductiveautomation.ignition.designer.workspacewelcome.*
+import java.lang.IllegalStateException
 import java.util.*
 import javax.swing.*
 
-class MarkdownWorkspace(context: DesignerContext) : TabbedResourceWorkspace(context,
+class MarkdownWorkspace(context: DesignerContext) : TabbedResourceWorkspace(
+    context,
     ResourceDescriptor.builder()
         .resourceType(MarkdownResource.RESOURCE_TYPE)
         .rootFolderText("Markdown Notes")
         .rootIcon(VectorIcons.get("resource-note"))
         .navTreeLocation(999)
-        .build()) {
+        .build()
+) {
 
     override fun getKey() = "markdownEditor"
 
@@ -24,16 +29,16 @@ class MarkdownWorkspace(context: DesignerContext) : TabbedResourceWorkspace(cont
         return MarkdownEditor(this, resourcePath)
     }
 
-    private val newMarkdownNote: (ProjectResourceBuilder) -> Unit = { builder ->
-        builder.putData(MarkdownResource.DATA_KEY, "Enter a note".toByteArray())
-    }
-
     override fun addNewResourceActions(folderNode: ResourceFolderNode, menu: JPopupMenu) {
-        menu.add(object : NewResourceAction(this, folderNode, newMarkdownNote) {
+        menu.add(object : NewResourceAction(this, folderNode) {
             override fun newResourceName() = "note"
 
+            override fun createPrototype(): MarkdownResource {
+                return MarkdownResource(123, 456)
+            }
+
             init {
-                putValue(Action.NAME, "New Note")
+                putValue(Action.NAME, "New Resource")
                 putValue(Action.SMALL_ICON, VectorIcons.get("resource-note"))
             }
         })
@@ -50,9 +55,14 @@ class MarkdownWorkspace(context: DesignerContext) : TabbedResourceWorkspace(cont
                         listOf(
                             ResourceBuilderDelegate.build(
                                 "markdown note",
-                                VectorIcons.get("resource-note"),
-                                newMarkdownNote
-                            )
+                                VectorIcons.get("resource-note")
+                            ) { builder ->
+                                val serializer = context.createSerializer()
+                                val prototype = MarkdownResource(123, 456)
+                                serializer.addObject(prototype)
+                                val bytes = serializer.serializeBinary(true)
+                                builder.putData(bytes)
+                            }
                         ),
                         this@MarkdownWorkspace::open
                     ),
