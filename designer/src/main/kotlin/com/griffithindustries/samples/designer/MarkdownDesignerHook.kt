@@ -2,6 +2,7 @@ package com.griffithindustries.samples.designer
 
 import com.griffithindustries.samples.common.*
 import com.inductiveautomation.ignition.client.icons.*
+import com.inductiveautomation.ignition.common.BundleUtil
 import com.inductiveautomation.ignition.common.licensing.*
 import com.inductiveautomation.ignition.common.project.resource.*
 import com.inductiveautomation.ignition.designer.model.*

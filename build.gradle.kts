@@ -7,7 +7,7 @@ plugins {
 
 version = "0.0.1-SNAPSHOT"
 
-extra["sdkVersion"] = "8.1.0-SNAPSHOT"
+extra["sdkVersion"] = "8.1.0"
 
 ignitionModule {
     name.set("Markdown Resources")
@@ -26,9 +26,10 @@ ignitionModule {
         "com.griffithindustries.samples.gateway.MarkdownGatewayHook" to "G",
         "com.griffithindustries.samples.designer.MarkdownDesignerHook" to "D"
     ))
+    applyInductiveArtifactRepo.set(true)
 }
 
-tasks.getByName("signModule").enabled = false
+tasks.getByName("signModule").enabled = true
 
 allprojects {
     tasks {
