@@ -4,11 +4,11 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":common"))
+    compileOnly(project(":common"))
 
     val sdkVersion: String by project.parent!!.extra
-    implementation("com.inductiveautomation.ignitionsdk", "designer-api", sdkVersion)
-    implementation("com.inductiveautomation.ignitionsdk", "ignition-common", sdkVersion)
+    compileOnly("com.inductiveautomation.ignitionsdk", "designer-api", sdkVersion)
+    compileOnly("com.inductiveautomation.ignitionsdk", "ignition-common", sdkVersion)
 
     modlApi(kotlin("stdlib"))
 }

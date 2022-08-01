@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.*
 
 plugins {
     kotlin("jvm") version "1.4.30"
-    id("io.ia.sdk.modl") version ("0.0.1-SNAPSHOT")
+    id("io.ia.sdk.modl") version ("0.1.0")
 }
 
 version = "0.0.1-SNAPSHOT"

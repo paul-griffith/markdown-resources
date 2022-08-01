@@ -5,5 +5,5 @@ plugins {
 
 dependencies {
     val sdkVersion: String by project.parent!!.extra
-    implementation("com.inductiveautomation.ignitionsdk", "ignition-common", sdkVersion)
+    compileOnly("com.inductiveautomation.ignitionsdk", "ignition-common", sdkVersion)
 }
