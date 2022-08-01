@@ -15,6 +15,8 @@ class MarkdownDesignerHook : AbstractDesignerModuleHook() {
         this.context = context
 
         context.registerResourceWorkspace(MarkdownWorkspace(context))
+
+        BundleUtil.get().addBundle("markdown", this::class.java, "localization")
     }
 
     override fun shutdown() = Unit
