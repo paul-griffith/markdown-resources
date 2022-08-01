@@ -23,7 +23,7 @@ class MarkdownDesignerHook : AbstractDesignerModuleHook() {
     override fun shutdown() = Unit
 
     override fun getResourceCategoryKey(id: ProjectResourceId): String = when(id.resourceType) {
-        MarkdownResource.RESOURCE_TYPE -> "Markdown Notes"
+        MarkdownResource.RESOURCE_TYPE -> "markdown.resource.nouns"
         else -> super.getResourceCategoryKey(id)
     }
 
