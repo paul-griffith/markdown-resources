@@ -4,7 +4,6 @@ import com.griffithindustries.samples.common.*
 import com.inductiveautomation.ignition.client.icons.*
 import com.inductiveautomation.ignition.common.project.resource.*
 import com.inductiveautomation.ignition.designer.model.*
-import com.inductiveautomation.ignition.designer.navtree.model.*
 import com.inductiveautomation.ignition.designer.tabbedworkspace.*
 import com.inductiveautomation.ignition.designer.workspacewelcome.*
 import java.util.*
@@ -13,6 +12,7 @@ import javax.swing.*
 class MarkdownWorkspace(context: DesignerContext) : TabbedResourceWorkspace(context,
     ResourceDescriptor.builder()
         .resourceType(MarkdownResource.RESOURCE_TYPE)
+        .nounKey("markdown.resource.noun")
         .rootFolderText("Markdown Notes")
         .rootIcon(VectorIcons.get("resource-note"))
         .navTreeLocation(999)
