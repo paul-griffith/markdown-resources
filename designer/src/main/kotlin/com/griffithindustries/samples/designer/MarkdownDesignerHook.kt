@@ -26,11 +26,6 @@ class MarkdownDesignerHook : AbstractDesignerModuleHook() {
         else -> super.getResourceCategoryKey(id)
     }
 
-    override fun getResourceDisplayName(id: ProjectResourceId): String = when(id.resourceType) {
-        MarkdownResource.RESOURCE_TYPE -> "Markdown"
-        else -> super.getResourceDisplayName(id)
-    }
-
     override fun getResourceIcon(id: ProjectResourceId): Icon = when(id.resourceType) {
         MarkdownResource.RESOURCE_TYPE -> VectorIcons.get("resource-note")
         else -> super.getResourceIcon(id)
